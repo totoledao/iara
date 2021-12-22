@@ -127,6 +127,6 @@ Project Link: [https://github.com/totoledao/iara](https://github.com/totoledao/i
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [license-shield]: https://img.shields.io/badge/License-MIT-blue.svg
-[license-url]: https://github.com/totoledao/iara/blob/main/LICENSE.txt
+[license-url]: https://github.com/totoledao/iara/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=0e76a8
 [linkedin-url]: http://www.linkedin.com/in/guilhermemtoledo
