@@ -6,7 +6,7 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 <!-- PROJECT LOGO -->
-<!-- <br> -->
+
 <p align="center">  
   <img src="iaraLogo.png" alt="iara logo" width="200">
 
@@ -41,12 +41,8 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-<!-- ![planlyAssets/Home.jpg) -->
 
 I had always been interested in learning Python and explore its capabilities with computer vision and automation so this project was a great hands-on introduction.
 
@@ -90,8 +86,6 @@ To get a local copy up and running follow these simple steps.
 ## Usage
 
 **Soon...**
-
-<!-- <img src="readmeAssets/1%20Login.jpg" alt="Logo" width="250"> -->
 
 <!-- CONTRIBUTING -->
 ## Contributing
