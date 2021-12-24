@@ -7,7 +7,7 @@ import pyaudio,audioop
 import dearpygui.dearpygui as dpg
 
 state = "waiting"
-launch_time = 0.05 + random.random()
+launch_time = random.random()
 fishingPos = []
 noiseThreshold = 5500
 noiseReading = 0
@@ -34,7 +34,7 @@ def getRandomFishingSpot():
 def castHook():
   global launch_time, state
   print("Started fishing")
-  time.sleep(1)
+  time.sleep(1.5)
   
   win32api.SetCursorPos(getRandomFishingSpot())
   win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0)  
@@ -48,7 +48,7 @@ def hookFish():
   print("FISHIN'")
   p = pyaudio.PyAudio()
   stream = p.open(format=pyaudio.paInt16,channels=2,rate=44100,input=True,frames_per_buffer=1024)
-  time.sleep(3)
+  time.sleep(2)
   startCounter = time.time()  
 
   while state == "fishing":    
@@ -76,8 +76,8 @@ def hookFish():
       stream.close()
       # Sets UI noise value
       dpg.set_value('noise', 0)
-      state = "waiting"
       time.sleep(1)
+      state = "waiting"
       break
 
 def catchFish():
@@ -86,35 +86,28 @@ def catchFish():
   time.sleep(0.2)
   
   if pyautogui.locateOnScreen('bobber.png', confidence = 0.7, region = (830, 530, 260, 65) ) == None:
+    time.sleep(1)
     print("set to wait")
     state = "waiting"
-    time.sleep(1) 
   
   while pyautogui.locateOnScreen('bobber.png', confidence = 0.7, region = (830, 530, 260, 65) ) != None:
 
+    bobber = pyautogui.locateOnScreen('bobber.png', confidence = 0.7, region = (830, 530, 260, 65) )
+    
+    if bobber == None:
+      win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)      
+      break
+
     print("In minigame")
-    (x, y, w, h) = pyautogui.locateOnScreen('bobber.png', confidence = 0.7, region = (830, 530, 260, 65) )   
+    (x, y, w, h) = bobber
     bobberPosX = x + ( 0.5 * w )
 
-    if bobberPosX <= 1030 and bobberPosX > 1000:      
+    if bobberPosX <= 1010:
       win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0)
-      time.sleep(random.random())
-      win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
-
-    if bobberPosX <= 1000 and bobberPosX > 970:    
-      win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0)
-      time.sleep(random.random() + 0.4)
-      win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)      
     
-    if bobberPosX <= 970 and bobberPosX > 930:    
-      win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0)
-      time.sleep(random.random() + 1)
-      win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)      
-    
-    if bobberPosX <= 930:     
-      win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0)
-      time.sleep(random.random() + 2)
+    if bobberPosX > 1020:
       win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+    
 
 #### Callbacks for the UI
 
