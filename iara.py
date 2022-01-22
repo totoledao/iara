@@ -9,7 +9,7 @@ import dearpygui.dearpygui as dpg
 state = "waiting"
 launch_time = random.random()
 fishingPos = []
-noiseThreshold = 5500
+noiseThreshold = 9300
 noiseReading = 0
 botStarted = False
 
@@ -34,7 +34,7 @@ def getRandomFishingSpot():
 def castHook():
   global launch_time, state
   print("Started fishing")
-  time.sleep(1.5)
+  time.sleep(1.2)
   
   win32api.SetCursorPos(getRandomFishingSpot())
   win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0)  
@@ -49,7 +49,7 @@ def hookFish():
   p = pyaudio.PyAudio()
   stream = p.open(format=pyaudio.paInt16,channels=2,rate=44100,input=True,frames_per_buffer=1024)
   time.sleep(2)
-  startCounter = time.time()  
+  startCounter = time.time() 
 
   while state == "fishing":    
     data = stream.read(1024)
@@ -102,7 +102,7 @@ def catchFish():
     (x, y, w, h) = bobber
     bobberPosX = x + ( 0.5 * w )
 
-    if bobberPosX <= 1010:
+    if bobberPosX <= 1015:
       win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0)
     
     if bobberPosX > 1020:
@@ -169,9 +169,9 @@ with dpg.window(tag="iara"):
   dpg.add_spacer(height=5)
 
   # Noise threshold to detect when to hook the fish
-  dpg.add_slider_int(label="Threshold", tag="threshold", clamped=True, max_value=10000, min_value=0, default_value=noiseThreshold, callback=setNoiseThreshold)
+  dpg.add_slider_int(label="Threshold", tag="threshold", clamped=True, max_value=15000, min_value=0, default_value=noiseThreshold, callback=setNoiseThreshold)
   # Displays current noise
-  dpg.add_slider_int(label="Noise", tag="noise", clamped=True, max_value=10000, min_value=0, default_value=noiseReading, no_input=True, callback=blockSetNoise)    
+  dpg.add_slider_int(label="Noise", tag="noise", clamped=True, max_value=15000, min_value=0, default_value=noiseReading, no_input=True, callback=blockSetNoise)    
   dpg.add_spacer(height=5)
 
   with dpg.group(horizontal=True):
